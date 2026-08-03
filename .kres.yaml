@@ -1,6 +1,17 @@
 ---
+kind: common.Repository
+spec:
+  skipSlackNotify: true
+---
+kind: common.ReKres
+spec:
+  kresImage: ghcr.io/nirvati-os/kres:latest
+---
 kind: pkgfile.Build
 spec:
+  registry: registry.nirvati.de
+  registryUsername: ${{ secrets.NIRVATI_REGISTRY_USERNAME }}
+  registryPassword: ${{ secrets.NIRVATI_REGISTRY_PASSWORD }}
   targets:
     - amazon-ena
     - amdgpu
@@ -103,13 +114,13 @@ spec:
       - name: EXTENSIONS_IMAGE_REF
         defaultValue: $(REGISTRY_AND_USERNAME)/extensions:$(TAG)
       - name: PKGS
-        defaultValue: v1.14.0-alpha.0-113-gf78e3dc
+        defaultValue: v1.14.0-alpha.0-117-g9326f2f
       - name: PKGS_PREFIX
-        defaultValue: ghcr.io/siderolabs
+        defaultValue: ghcr.io/nirvati-os
       - name: TOOLS
-        defaultValue: v1.14.0-alpha.0-26-g08071b1
+        defaultValue: v1.14.0-alpha.0-29-ga5601f2
       - name: TOOLS_PREFIX
-        defaultValue: ghcr.io/siderolabs
+        defaultValue: ghcr.io/nirvati-os
       - name: GO_TOOLS_RELEASE
         defaultValue: v0.3.1
   useBldrPkgTagResolver: true
@@ -162,6 +173,8 @@ spec:
     condition: except-pull-request
     environment:
       PUSH: true
+      NIRVATI_REGISTRY_USERNAME: ${{ secrets.NIRVATI_REGISTRY_USERNAME }}
+      NIRVATI_REGISTRY_PASSWORD: ${{ secrets.NIRVATI_REGISTRY_PASSWORD }}
 ---
 kind: custom.Step
 name: extensions-catalog
@@ -228,6 +241,11 @@ spec:
       - internal/extensions/image-digests
     script:
       - |
+        @if [ "$(REGISTRY)" = "dev-registry.nirvati.de" ]; then \
+          echo "$$NIRVATI_DEV_REGISTRY_PASSWORD" | docker login $(REGISTRY) -u "$$NIRVATI_DEV_REGISTRY_USERNAME" --password-stdin; \
+        else \
+          echo "$$NIRVATI_REGISTRY_PASSWORD" | docker login $(REGISTRY) -u "$$NIRVATI_REGISTRY_USERNAME" --password-stdin; \
+        fi
         @echo "Generating image descriptions..."
         @printf '' > internal/extensions/descriptions.yaml
         @for image in $(shell cat internal/extensions/image-digests); do \
@@ -265,6 +283,7 @@ spec:
     phony: true
     script:
       - |
+        @echo "$$NIRVATI_DEV_REGISTRY_PASSWORD" | docker login $(REGISTRY) -u "$$NIRVATI_DEV_REGISTRY_USERNAME" --password-stdin
         @$(MAKE)
         @$(MAKE) nonfree
         @$(MAKE) extensions
@@ -275,7 +294,9 @@ spec:
     condition: on-pull-request
     environment:
       PUSH: true
-      REGISTRY: registry.dev.siderolabs.io
+      REGISTRY: dev-registry.nirvati.de
+      NIRVATI_DEV_REGISTRY_USERNAME: ${{ secrets.NIRVATI_DEV_REGISTRY_USERNAME }}
+      NIRVATI_DEV_REGISTRY_PASSWORD: ${{ secrets.NIRVATI_DEV_REGISTRY_PASSWORD }}
 ---
 kind: custom.Step
 name: grype-scan
@@ -291,7 +312,7 @@ spec:
     cronOnly: true
     jobs:
       - name: grype-scan
-        runnerGroup: pkgs
+        runnerGroup: ubuntu-24.04
         triggerLabels:
         - integration/grype
         crons:
