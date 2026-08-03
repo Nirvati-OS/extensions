@@ -95,7 +95,6 @@ spec:
     - xe
     - xen-guest-agent
     - youki
-    - zerotier
     - zfs
   additionalTargets:
     nonfree:
