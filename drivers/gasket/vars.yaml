@@ -1,3 +1,0 @@
-# update when pkgs version is updated
-VERSION: "5815ee3-{{ .BUILD_ARG_TAG }}"
-TIER: "extra"

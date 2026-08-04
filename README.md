@@ -20,11 +20,11 @@ In order to find a container reference for a system extension compatible with yo
 crane export ghcr.io/siderolabs/extensions:v<talos-version> | tar x -O image-digests | grep <extension-name>
 ```
 
-For example, to find a compatible version of the `gasket-driver` extension for Talos v1.5.3, you can run:
+For example, to find a compatible version of the `tailscale` extension for Talos v1.5.3, you can run:
 
 ```bash
-$ crane export ghcr.io/siderolabs/extensions:v1.5.3 | tar x -O image-digests | grep gasket-driver
-ghcr.io/siderolabs/gasket-driver:97aeba58-v1.5.3@sha256:c786edb356edae3b451cb82d5322f94e54ea0710195181b93ae37ccc8e7ba908
+$ crane export ghcr.io/siderolabs/extensions:v1.5.3 | tar x -O image-digests | grep tailscale
+ghcr.io/siderolabs/tailscale:v1.5.3@sha256:c786edb356edae3b451cb82d5322f94e54ea0710195181b93ae37ccc8e7ba908
 ```
 
 Please always use the pinned digest when referencing an extension image.
@@ -33,7 +33,7 @@ All extensions are signed with Google Accounts OIDC issuer matching `@siderolabs
 
 ```bash
 cosign verify --certificate-identity-regexp '@siderolabs\.com$' --certificate-oidc-issuer https://accounts.google.com ghcr.io/siderolabs/extensions:v1.5.3
-cosign verify --certificate-identity-regexp '@siderolabs\.com$' --certificate-oidc-issuer https://accounts.google.com ghcr.io/siderolabs/gasket-driver:97aeba58-v1.5.3@sha256:c786edb356edae3b451cb82d5322f94e54ea0710195181b93ae37ccc8e7ba908
+cosign verify --certificate-identity-regexp '@siderolabs\.com$' --certificate-oidc-issuer https://accounts.google.com ghcr.io/siderolabs/tailscale:v1.5.3@sha256:c786edb356edae3b451cb82d5322f94e54ea0710195181b93ae37ccc8e7ba908
 ```
 
 ## Extension Catalog
@@ -104,7 +104,6 @@ tiers based on support level:
 | ---- | ---- | ----- | ------- | ----------- |
 | [amazon-ena](drivers/amazon-ena) | :green_square: core | [ghcr.io/siderolabs/amazon-ena](https://github.com/siderolabs/extensions/pkgs/container/amazon-ena) | `2.17.2-VERSION` |  This system extension provides Amazon ENA kernel modules built against a specific Talos version. ENA is a networking interface designed to make good use of modern CPU features and system architectures. |
 | [chelsio-drivers](drivers/chelsio) | :yellow_square: extra | [ghcr.io/siderolabs/chelsio-drivers](https://github.com/siderolabs/extensions/pkgs/container/chelsio-drivers) | `VERSION` |  This system extension provides Chelsio network drivers. |
-| [gasket-driver](drivers/gasket) | :yellow_square: extra | [ghcr.io/siderolabs/gasket-driver](https://github.com/siderolabs/extensions/pkgs/container/gasket-driver) | `5815ee3-VERSION` |  This system extension provides google gasket driver kernel modules built against a specific Talos version. This driver is required for PCIe and M.2 Google Coral accelerators. There are 2 kernel modules ("gasket" and "apex") required to enable this driver. |
 | [gpio-pinctrl](drivers/gpio-pinctrl) | :yellow_square: extra | [ghcr.io/siderolabs/gpio-pinctrl](https://github.com/siderolabs/extensions/pkgs/container/gpio-pinctrl) | `VERSION` |  Intel Apollo Lake GPIO/Pinctrl drivers. Provides pinctrl-intel and pinctrl-broxton kernel modules for GPIO access on Intel Apollo Lake platforms (INT3452 ACPI device). |
 | [hailort](drivers/hailort) | :yellow_square: extra | [ghcr.io/siderolabs/hailort](https://github.com/siderolabs/extensions/pkgs/container/hailort) | `4.24.0` |  Driver for HailoRT family of AI hardware (eg. Hailo-8L) and is required for PCIe and M.2 Hailo accelerators. |
 | [joydev](drivers/joydev) | :yellow_square: extra | [ghcr.io/siderolabs/joydev](https://github.com/siderolabs/extensions/pkgs/container/joydev) | `VERSION` |  This system extension provides the joydev kernel module built against a specific Talos version. This kernel module provides the Linux joystick interface (/dev/input/js*) for the Gamepad API. It is required for game streaming software like Sunshine to expose gamepad input to applications that use the legacy joystick API or the browser Gamepad API via evdev-to-joydev translation. |

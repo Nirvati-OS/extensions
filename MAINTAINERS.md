@@ -25,7 +25,6 @@ If the field is marked as `Needs Maintainer`, it means that the package is curre
 | dvb-m88ds3103                             | Yehia Amer         | [yehia2amer](https://github.com/yehia2amer)                                              |
 | ecr-credential-provider                   | Florian Ströger    | [Preisschild](https://github.com/Preisschild)                                            |
 | fuse3                                     | Sidero Labs        | NA                                                                                       |
-| gasket-driver                             | Sidero Labs        | NA                                                                                       |
 | gvisor                                    | Sidero Labs        | NA                                                                                       |
 | gvisor-debug                              | Sidero Labs        | NA                                                                                       |
 | hello-world-service                       | Sidero Labs        | NA                                                                                       |
