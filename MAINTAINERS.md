@@ -45,7 +45,6 @@ If the field is marked as `Needs Maintainer`, it means that the package is curre
 | nfs-utils                                 | Clément Nussbaumer | [clementnuss](https://github.com/clementnuss)                                            |
 | nut-client                                | Sidero Labs        | NA                                                                                       |
 | nvme-cli                                  | Sidelo Labs        | NA                                                                                       |
-| px-fuse                                   | Sidero Labs        | NA                                                                                       |
 | panfrost                                  | Adam Cirillo       | [adamcirillo](https://github.com/adamcirillo)                                            |
 | qemu-guest-agent                          | Markus Reiter      | [reitermarkus](https://github.com/reitermarkus)                                          |
 | qlogic-firmware                           | Sidero Labs        | NA                                                                                       |

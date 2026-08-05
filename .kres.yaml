@@ -60,7 +60,6 @@ spec:
     - nfsrahead
     - nut-client
     - nvme-cli
-    - px-fuse
     - soci-snapshotter
     - panfrost
     - qemu-guest-agent
