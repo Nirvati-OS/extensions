@@ -43,20 +43,6 @@ dependencies:
   # mei can be ignored from reproducibility test since it's kernel modules copied from pkgs
   # - stage: mei
   - stage: nut-client
-  - stage: nvidia-container-toolkit-lts
-    from: /
-    to: /nvidia-container-toolkit-lts
-  - stage: nvidia-container-toolkit-production
-    from: /
-    to: /nvidia-container-toolkit-production
-  # nvidia-fabricmanage-lts can be ignored from reproducibility test since it's a tarball downloaded and extracted (no build happens)
-  # - stage: nvidia-fabricmanager-lts
-  # nvidia-fabricmanage-production can be ignored from reproducibility test since it's a tarball downloaded and extracted (no build happens)
-  # - stage: nvidia-fabricmanager-production
-  # nvidia-open-gpu-kernel-modules-lts can be ignored from reproducibility test since it's kernel modules copied from pkgs
-  # - stage: nvidia-open-gpu-kernel-modules-lts
-  # nvidia-open-gpu-kernel-modules-production can be ignored from reproducibility test since it's kernel modules copied from pkgs
-  # - stage: nvidia-open-gpu-kernel-modules-production
   - stage: qemu-guest-agent
   # qlogic-firmware can be ignored from reproducibility test since it's linux-firmware copied from pkgs
   # - stage: qlogic-firmware
@@ -80,11 +66,6 @@ dependencies:
   # - stage: wasmedge # wasmedge can be ignored from reproducibility test since it's a tarball downloaded and extracted (no build happens)
   - stage: xen-guest-agent
   - stage: zfs
-
-  # nonfree-kmod-nvidia-lts can be ignored from reproducibility test since it's kernel modules copied from pkgs
-  # - stage: nonfree-kmod-nvidia-lts
-  # nonfree-kmod-nvidia-production can be ignored from reproducibility test since it's kernel modules copied from pkgs
-  # - stage: nonfree-kmod-nvidia-production
 finalize:
   #  here we're only copying /rootfs since we don't want the manifest.yaml files
   - from: /rootfs

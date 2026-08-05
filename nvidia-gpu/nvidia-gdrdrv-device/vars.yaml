@@ -1,3 +1,0 @@
-# update when pkgs version is updated
-VERSION: {{ .GDRCOPY_VERSION }}
-TIER: "extra"

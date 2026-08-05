@@ -178,20 +178,6 @@ tiers based on support level:
 | [vmtoolsd-guest-agent](guest-agents/vmtoolsd-guest-agent) | :yellow_square: extra | [ghcr.io/siderolabs/vmtoolsd-guest-agent](https://github.com/siderolabs/extensions/pkgs/container/vmtoolsd-guest-agent) | `v1.5.0` |  This system extension provides talos-vmtoolsd |
 | [xen-guest-agent](guest-agents/xen-guest-agent) | :yellow_square: extra | [ghcr.io/siderolabs/xen-guest-agent](https://github.com/siderolabs/extensions/pkgs/container/xen-guest-agent) | `0.4.0-g5c274e6` |  xen-guest-agent communicates information and metrics with the Xen host. |
 
-### NVIDIA GPU
-
-| Name | Tier | Image | Version | Description |
-| ---- | ---- | ----- | ------- | ----------- |
-| [nonfree-kmod-nvidia-lts](nvidia-gpu/nonfree/kmod-nvidia/lts) | :green_square: core | [ghcr.io/siderolabs/nonfree-kmod-nvidia-lts](https://github.com/siderolabs/extensions/pkgs/container/nonfree-kmod-nvidia-lts) | `580.173.02-VERSION` |  This system extension provides nvidia proprietary kernel modules built against a specific Talos version. |
-| [nonfree-kmod-nvidia-production](nvidia-gpu/nonfree/kmod-nvidia/production) | :green_square: core | [ghcr.io/siderolabs/nonfree-kmod-nvidia-production](https://github.com/siderolabs/extensions/pkgs/container/nonfree-kmod-nvidia-production) | `595.71.05-VERSION` |  This system extension provides nvidia proprietary kernel modules built against a specific Talos version. |
-| [nvidia-container-toolkit-lts](nvidia-gpu/nvidia-container-toolkit/lts) | :green_square: core | [ghcr.io/siderolabs/nvidia-container-toolkit-lts](https://github.com/siderolabs/extensions/pkgs/container/nvidia-container-toolkit-lts) | `580.173.02-v1.19.1` |  This system extension provides nvidia runtime and its dependencies using NVIDIA's runtime handler. |
-| [nvidia-container-toolkit-production](nvidia-gpu/nvidia-container-toolkit/production) | :green_square: core | [ghcr.io/siderolabs/nvidia-container-toolkit-production](https://github.com/siderolabs/extensions/pkgs/container/nvidia-container-toolkit-production) | `595.71.05-v1.19.1` |  This system extension provides nvidia runtime and its dependencies using NVIDIA's runtime handler. |
-| [nvidia-fabricmanager-lts](nvidia-gpu/nvidia-fabricmanager/lts) | :green_square: core | [ghcr.io/siderolabs/nvidia-fabricmanager-lts](https://github.com/siderolabs/extensions/pkgs/container/nvidia-fabricmanager-lts) | `580.173.02` |  This system extension provides the Nvidia fabricmanager for GPUs that need NVLink support. |
-| [nvidia-fabricmanager-production](nvidia-gpu/nvidia-fabricmanager/production) | :green_square: core | [ghcr.io/siderolabs/nvidia-fabricmanager-production](https://github.com/siderolabs/extensions/pkgs/container/nvidia-fabricmanager-production) | `595.71.05` |  This system extension provides the Nvidia fabricmanager for GPUs that need NVLink support. |
-| [nvidia-gdrdrv-device](nvidia-gpu/nvidia-gdrdrv-device) | :yellow_square: extra | [ghcr.io/siderolabs/nvidia-gdrdrv-device](https://github.com/siderolabs/extensions/pkgs/container/nvidia-gdrdrv-device) | `v2.5.2` |  This system extension provides NVIDIA GPUDirect RDMA (gdrcopy) device file. The gdrdrv kernel module enables low-latency GPU memory access for RDMA operations. |
-| [nvidia-open-gpu-kernel-modules-lts](nvidia-gpu/nvidia-modules/lts) | :green_square: core | [ghcr.io/siderolabs/nvidia-open-gpu-kernel-modules-lts](https://github.com/siderolabs/extensions/pkgs/container/nvidia-open-gpu-kernel-modules-lts) | `580.173.02-VERSION` |  This system extension provides nvidia open source driver kernel modules built against a specific Talos version. |
-| [nvidia-open-gpu-kernel-modules-production](nvidia-gpu/nvidia-modules/production) | :green_square: core | [ghcr.io/siderolabs/nvidia-open-gpu-kernel-modules-production](https://github.com/siderolabs/extensions/pkgs/container/nvidia-open-gpu-kernel-modules-production) | `595.71.05-VERSION` |  This system extension provides nvidia open source driver kernel modules built against a specific Talos version. |
-
 ### Tools
 
 | Name | Tier | Image | Version | Description |
@@ -298,17 +284,9 @@ Any paths in the `rootfs` should be contained within the following hierarchies:
 - `/usr/bin/ldconfig` (glibc)
 - `/etc/ld.so.conf` (glibc)
 - `/etc/ld.so.cache` (glibc)
-- `/usr/bin/nvidia-modprobe` (nvidia)
-- `/usr/bin/nvidia-pcc` (nvidia)
-- `/usr/bin/nvidia-smi` (nvidia)
-- `/usr/bin/nvidia-ctk` (nvidia)
-- `/usr/bin/nvidia-cdi-hook` (nvidia)
 - `/usr/bin/nvme` (standard path tools expect this)
 - `/usr/lib/udev/rules.d/`
 - `/usr/local/`
-- `/usr/share/glvnd/`
-- `/usr/share/egl/`
-- `/etc/vulkan/`
 
 ## Dependency Diagram
 

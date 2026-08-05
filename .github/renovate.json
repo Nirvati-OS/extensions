@@ -68,7 +68,6 @@
         {
             "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.?(?<patch>\\d+)?$",
             "matchPackageNames": [
-                "nvidia/open-gpu-kernel-modules",
                 "open-iscsi/open-isns",
                 "containers/crun",
                 "git://git.kernel.org/pub/scm/libs/libcap/libcap.git",

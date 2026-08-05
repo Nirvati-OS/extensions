@@ -59,13 +59,6 @@ spec:
     - nfsd
     - nfsrahead
     - nut-client
-    - nvidia-container-toolkit-lts
-    - nvidia-container-toolkit-production
-    - nvidia-fabricmanager-lts
-    - nvidia-fabricmanager-production
-    - nvidia-gdrdrv-device
-    - nvidia-open-gpu-kernel-modules-lts
-    - nvidia-open-gpu-kernel-modules-production
     - nvme-cli
     - px-fuse
     - soci-snapshotter
@@ -95,10 +88,6 @@ spec:
     - xen-guest-agent
     - youki
     - zfs
-  additionalTargets:
-    nonfree:
-      - nonfree-kmod-nvidia-lts
-      - nonfree-kmod-nvidia-production
   reproducibleTargetName: reproducibility
   extraBuildArgs:
     - TAG
@@ -227,7 +216,6 @@ spec:
       - |
         @rm -f internal/extensions/image-digests
         @$(foreach target,$(TARGETS),echo $(REGISTRY)/$(USERNAME)/$(target):$(shell $(ARTIFACTS)/bldr eval --target $(target) --build-arg TAG=$(TAG) '{{.VERSION}}' 2>/dev/null)@$(shell yq -r '."containerimage.digest"' $(ARTIFACTS)/$(target).metadata.json) >> internal/extensions/image-digests;)
-        @$(foreach target,$(NONFREE_TARGETS),echo $(REGISTRY)/$(USERNAME)/$(target):$(shell $(ARTIFACTS)/bldr eval --target $(target) --build-arg TAG=$(TAG) '{{.VERSION}}' 2>/dev/null)@$(shell yq -r '."containerimage.digest"' $(ARTIFACTS)/$(target).metadata.json) >> internal/extensions/image-digests;)
 ---
 kind: custom.Step
 name: internal/extensions/descriptions.yaml
@@ -283,7 +271,6 @@ spec:
       - |
         @echo "$$NIRVATI_DEV_REGISTRY_PASSWORD" | docker login $(REGISTRY) -u "$$NIRVATI_DEV_REGISTRY_USERNAME" --password-stdin
         @$(MAKE)
-        @$(MAKE) nonfree
         @$(MAKE) extensions
         @docker run --rm --net=host --user $(shell id -u):$(shell id -g) -v $(PWD):/src -w /src ghcr.io/siderolabs/extensions-duplicate-finder:$(GO_TOOLS_RELEASE) validate --image $(EXTENSIONS_IMAGE_REF) --exceptions hack/test/exceptions-amd64.yaml --platform=linux/amd64
         @docker run --rm --net=host --user $(shell id -u):$(shell id -g) -v $(PWD):/src -w /src ghcr.io/siderolabs/extensions-duplicate-finder:$(GO_TOOLS_RELEASE) validate --image $(EXTENSIONS_IMAGE_REF) --exceptions hack/test/exceptions-arm64.yaml --platform=linux/arm64
@@ -341,7 +328,6 @@ kind: common.Renovate
 spec:
   packageRules:
     - matchPackageNames:
-        - nvidia/open-gpu-kernel-modules
         - open-iscsi/open-isns
         - containers/crun
         - git://git.kernel.org/pub/scm/libs/libcap/libcap.git
