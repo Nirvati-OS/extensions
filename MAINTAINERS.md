@@ -63,7 +63,6 @@ If the field is marked as `Needs Maintainer`, it means that the package is curre
 | vc4                                       | Jorn Vanthienen    | [Jorn Vanthienen](https://github.com/jvanthienen-gluo)                                   |
 | vmtoolsd-guest-agent                      | Robin Elfrink      | [robinelfrink](https://github.com/robinelfrink)                                          |
 | wasmedge                                  | Sidero Labs        | NA                                                                                       |
-| xdma-driver                               | Nikolai Shields    | [nikolaishields](https://github.com/nikolaishields)                                      |
 | xen-guest-agent                           | Jerwin NJ          | [j3rwin](https://github.com/j3rwin)                                                      |
 | youki                                     | 0xBrandon          | [0xBrandon](https://github.com/0x4272616E646F6E)                                         |
 | zerotier                                  | rob-htl            | [rob-htl](https://github.com/rob-htl)                                                    |

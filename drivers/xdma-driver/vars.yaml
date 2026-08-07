@@ -1,3 +1,0 @@
-# update when pkgs version is updated
-VERSION: "{{ .XDMA_VERSION }}-{{ .BUILD_ARG_TAG }}"
-TIER: "extra"
